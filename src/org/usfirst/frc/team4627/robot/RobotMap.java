@@ -35,7 +35,7 @@ public class RobotMap {
 	
 	//GTA Drive Settings
 		//Robot Speed Scaling
-		public static final double GTA_ROBOT_SPEED_SCALING = 1;
+		public static final double GTA_ROBOT_SPEED_SCALING = 0.6;
 		//Robot Max/Min Speed
 		public static final double GTA_MAX_ROBOT_SPEED = 0.9;
 		public static final double GTA_MIN_ROBOT_SPEED = -0.9;

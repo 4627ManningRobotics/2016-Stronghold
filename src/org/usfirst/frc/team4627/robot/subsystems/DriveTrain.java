@@ -1,6 +1,6 @@
 package org.usfirst.frc.team4627.robot.subsystems;
 import org.usfirst.frc.team4627.robot.RobotMap;
-import org.usfirst.frc.team4627.robot.commands.DrivingChoiceActivating;
+import org.usfirst.frc.team4627.robot.commands.ActivateDriving;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -44,7 +44,7 @@ public void setRightMotors(double speed) {
 
     public void initDefaultCommand() {
     	
-    	setDefaultCommand(new DrivingChoiceActivating());
+    	setDefaultCommand(new ActivateDriving());
     
     }
 }

@@ -117,9 +117,7 @@ public class Robot extends IterativeRobot {
     	driveTypeInt = (int) driveType.getSelected();
     	defencePlacementInt = (int) autoPlace.getSelected();
     	defenceValueInt = (int) autoType.getSelected();
-        autonomousDefence = (Command) autoType.getSelected();
-        autonomousPlacement = (Command) autoPlace.getSelected();
-        drivingType = (Command) driveType.getSelected();
+
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
