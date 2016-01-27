@@ -12,29 +12,30 @@ public class AutonomousGroup extends CommandGroup {
     
     public  AutonomousGroup() {
     	
-    if (Robot.defenceValueInt == 1) {
-    	
-    addSequential(new AutoDoNothing());
-    	
-    }
-    
-    if (Robot.defenceValueInt == 2) {
-    	
-    addSequential(new RampartsAuto());
-    	
-    }
-    
-    if (Robot.defenceValueInt == 3) {
-    	
-    addSequential(new RockWallAuto());
-    	
-    }
-    
-    if (Robot.defenceValueInt == 4) {
-    	
-    addSequential(new LowBar());
-    	
+    switch (Robot.defenceValueInt) {
+   
+    case 1:
+        addSequential(new AutoDoNothing());
+    case 2:
+        addSequential(new RampartsAuto());
+    case 3:
+        addSequential(new RockWallAuto());
+    case 4:
+        addSequential(new LowBar());
     }
 
+    switch (Robot.defencePlacementInt) {
+    
+    case 1:
+    	addSequential(new Placement1());
+    case 2:
+    	addSequential(new Placement2());
+    case 3:
+    	addSequential(new Placement3());
+    case 4:
+    	addSequential(new Placement4());
+    case 5:
+    	addSequential(new Placement5());
     }
-}
+    }
+    }

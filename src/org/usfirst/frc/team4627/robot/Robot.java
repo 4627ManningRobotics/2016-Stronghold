@@ -54,6 +54,10 @@ public class Robot extends IterativeRobot {
     public static SendableChooser autoType;
     
     public static Command drivingType;
+
+	public static int defencePlacementInt;
+	
+	public static int driveTypeInt;
     
     SendableChooser driveType;
 
@@ -69,24 +73,24 @@ public class Robot extends IterativeRobot {
 		
 		autoPlace = new SendableChooser();
 		
-		autoPlace.addDefault("1", new Placement1());
-		autoPlace.addObject("2", new Placement2());
-		autoPlace.addObject("3", new Placement3());
-		autoPlace.addObject("4", new Placement4());
-		autoPlace.addObject("5", new Placement5());
+		autoPlace.addDefault("1", 1);
+		autoPlace.addObject("2", 2);
+		autoPlace.addObject("3", 3);
+		autoPlace.addObject("4", 4);
+		autoPlace.addObject("5", 5);
 		
 		autoType = new SendableChooser();
 		
-		autoType.addDefault("Do Nothing",(int) 1);
+		autoType.addDefault("Do Nothing", 1);
 	    autoType.addObject("Ramparts", defenceValueInt = 2);
 	    autoType.addObject("RockWall", defenceValueInt = 3);
 	    autoType.addObject("Low Bar", defenceValueInt = 4);
 	    
 	    driveType = new SendableChooser();
 	    
-	    driveType.addDefault("GTA Drive", new ActivateGTADrive());
-	    driveType.addObject("Tank Drive", new ActivateTankDrive());
-	    driveType.addObject("Arcade Drive", new ActivateArcadeDrive());
+	    driveType.addDefault("GTA Drive", 1);
+	    driveType.addObject("Tank Drive", 2);
+	    driveType.addObject("Arcade Drive", 3);
    
 	    // autoValues = new SendableChooser();
       //  chooser.addDefault("Default Auto", new ExampleCommand());
@@ -121,6 +125,10 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	
+    	driveTypeInt = (int) driveType.getSelected();
+    	defencePlacementInt = (int) autoPlace.getSelected();
+    	defenceValueInt = (int) autoType.getSelected();
         autonomousDefence = (Command) autoType.getSelected();
         autonomousPlacement = (Command) autoPlace.getSelected();
         drivingType = (Command) driveType.getSelected();
