@@ -26,8 +26,8 @@ public class ArcadeDrive extends Command {
     double joystickX = Robot.oi.driverAxisValue(RobotMap.LEFT_JOYSTICK_X_AXIS);
     double joystickY = Robot.oi.driverAxisValue(RobotMap.LEFT_JOYSTICK_Y_AXIS);
     
-    double leftMotors = (joystickY + joystickX)*RobotMap.ARCADE_DRIVE_CONTROLS_SCALING;
-    double rightMotors = (joystickY - joystickX)*RobotMap.ARCADE_DRIVE_CONTROLS_SCALING*(-1);
+    double leftMotors = (-joystickY + joystickX)*RobotMap.ARCADE_DRIVE_CONTROLS_SCALING;
+    double rightMotors = (-joystickY - joystickX)*RobotMap.ARCADE_DRIVE_CONTROLS_SCALING*(-1);
     
     if (leftMotors > RobotMap.ARCADE_DRIVE_MAX_SPEED) {
     	

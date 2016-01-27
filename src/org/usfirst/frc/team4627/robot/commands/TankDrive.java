@@ -21,8 +21,8 @@ public class TankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-   double leftJoystick = (Robot.oi.driverAxisValue(RobotMap.LEFT_JOYSTICK_Y_AXIS))*RobotMap.TANK_DRIVE_CONTROLS_SCALING;
-   double rightJoystick = (Robot.oi.driverAxisValue(RobotMap.RIGHT_JOYSTICK_Y_AXIS))*RobotMap.TANK_DRIVE_CONTROLS_SCALING*(-1);
+   double leftJoystick = (Robot.oi.driverAxisValue(RobotMap.LEFT_JOYSTICK_Y_AXIS))*RobotMap.TANK_DRIVE_CONTROLS_SCALING*(-1);
+   double rightJoystick = (Robot.oi.driverAxisValue(RobotMap.RIGHT_JOYSTICK_Y_AXIS))*RobotMap.TANK_DRIVE_CONTROLS_SCALING;
    
    if (leftJoystick > RobotMap.TANK_DRIVE_MAX_SPEED) {
 	   
