@@ -1,14 +1,14 @@
 package org.usfirst.frc.team4627.robot.commands;
-
 import org.usfirst.frc.team4627.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
  */
 public class AutonomousGroupCommand extends Command {
+	
+	Command autonomousPlacementCommand;
+	Command autonomousDefenceCommand;
 
     public AutonomousGroupCommand() {
         
@@ -30,39 +30,42 @@ public class AutonomousGroupCommand extends Command {
     		switch (Robot.defenceValueInt) {
 
 		case 1:
-			Scheduler.getInstance().add(new AutoDoNothing());
+			autonomousDefenceCommand = new AutoDoNothing();
 			break;
 		case 2:
-			Scheduler.getInstance().add(new RampartsAuto());
+			autonomousDefenceCommand = new RampartsAuto();
 			break;
 		case 3:
-			Scheduler.getInstance().add(new RockWallAuto());
+			autonomousDefenceCommand = new RockWallAuto();
 			break;
 		case 4:
-			Scheduler.getInstance().add(new LowBar());
+			autonomousDefenceCommand = new LowBar();
 			break;
 		case 5:
-			Scheduler.getInstance().add(new RoughTerrainAuto());
+			autonomousDefenceCommand = new RoughTerrainAuto();
 		}
+    		autonomousDefenceCommand.start();
 
 		switch (Robot.defencePlacementInt) {
 
 		case 1:
-			Scheduler.getInstance().add(new Placement1());
+			autonomousPlacementCommand = new Placement1();
 			break;
 		case 2:
-			Scheduler.getInstance().add(new Placement2());
+			autonomousPlacementCommand = new Placement2();
 			break;
 		case 3:
-			Scheduler.getInstance().add(new Placement3());
+			autonomousPlacementCommand = new Placement3();
 			break;
 		case 4:
-			Scheduler.getInstance().add(new Placement4());
+			autonomousPlacementCommand = new Placement4();
 			break;
 		case 5:
-			Scheduler.getInstance().add(new Placement5());
+			autonomousPlacementCommand = new Placement5();
 			break;
 		}
+		
+		autonomousPlacementCommand.start();
     }
 
     // Make this return true when this Command no longer needs to run execute()

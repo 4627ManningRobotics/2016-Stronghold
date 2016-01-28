@@ -5,18 +5,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team4627.robot.commands.AutoDoNothing;
 import org.usfirst.frc.team4627.robot.commands.AutonomousGroupCommand;
-import org.usfirst.frc.team4627.robot.commands.LowBar;
-import org.usfirst.frc.team4627.robot.commands.Placement1;
-import org.usfirst.frc.team4627.robot.commands.Placement2;
-import org.usfirst.frc.team4627.robot.commands.Placement3;
-import org.usfirst.frc.team4627.robot.commands.Placement4;
-import org.usfirst.frc.team4627.robot.commands.Placement5;
-import org.usfirst.frc.team4627.robot.commands.RampartsAuto;
-import org.usfirst.frc.team4627.robot.commands.RockWallAuto;
-import org.usfirst.frc.team4627.robot.commands.RoughTerrainAuto;
 import org.usfirst.frc.team4627.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Compressor;
 
@@ -30,27 +19,28 @@ import edu.wpi.first.wpilibj.Compressor;
 public class Robot extends IterativeRobot {
 	
 	public static int defenceValueInt;
-
+	
 	public static final DriveTrain driveTrain = new DriveTrain();
 	public static OI oi;
 	
 	public static int driveMode;
 	
-	//Dashboard Title
-	
 	public static int autoPlacementInt;
 	
-	public static Command runAuto;
+	public static Command runAutoDefense;
+	
+	public static Command runAutoPlace;
 	
 	
 	public static Command autonomousPlacement;
 	
 	SendableChooser autoPlace;
 	
-
+	public static Command runAuto;
    public static Command autonomousDefence;
     
     public static SendableChooser autoType;
+    
     
     public static Command drivingType;
 
@@ -62,13 +52,14 @@ public class Robot extends IterativeRobot {
 
     
     Compressor com = new Compressor(RobotMap.COMPRESSOR_VALUE);
-
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
 		oi = new OI();
+		System.out.println("OI initialized");
 		
 		autoPlace = new SendableChooser();
 		
@@ -91,6 +82,7 @@ public class Robot extends IterativeRobot {
 	    driveType.addDefault("GTA Drive", 1);
 	    driveType.addObject("Tank Drive", 2);
 	    driveType.addObject("Arcade Drive", 3);
+	 
    
 	    // autoValues = new SendableChooser();
       //  chooser.addDefault("Default Auto", new ExampleCommand());
@@ -126,46 +118,11 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-    	driveTypeInt = (int) driveType.getSelected();
+    	driveTypeInt = (int) driveType.getSelected() ;
     	defencePlacementInt = (int) autoPlace.getSelected();
     	defenceValueInt = (int) autoType.getSelected();
-
-		switch (Robot.defenceValueInt) {
-
-	case 1:
-		runAuto = new AutoDoNothing();
-		break;
-	case 2:
-		runAuto = new RampartsAuto();
-		break;
-	case 3:
-		runAuto = new RockWallAuto();
-		break;
-	case 4:
-		runAuto = new LowBar();
-		break;
-	case 5:
-		runAuto = new RoughTerrainAuto();
-	}
-
-/*	switch (Robot.defencePlacementInt) {
-
-	case 1:
-		runAuto = new Placement1();
-		break;
-	case 2:
-		runAuto = new Placement2();
-		break;
-	case 3:
-		runAuto = new Placement3();
-		break;
-	case 4:
-		Scheduler.getInstance().add(new Placement4();
-		break;
-	case 5:
-		Scheduler.getInstance().add(new Placement5();
-		break;
-	}
+    	runAuto = new AutonomousGroupCommand();
+/*
         
 		 String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
@@ -179,7 +136,8 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-       if (runAuto != null) runAuto.start();
+ 
+	if (runAuto != null) runAuto.start();
  
     }
 
