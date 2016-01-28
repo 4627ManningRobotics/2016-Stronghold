@@ -18,9 +18,9 @@ public class RockWallAuto extends Command {
     // Values for movement will change after measurements are given
     protected void initialize() {
 		
-	Robot.driveTrain.setLeftMotors(0.1);	
-	Robot.driveTrain.setRightMotors(-0.1);
-	Timer.delay(1);
+	Robot.driveTrain.setLeftMotors(0.6);	
+	Robot.driveTrain.setRightMotors(-0.6);
+	Timer.delay(4);
    
     }
 

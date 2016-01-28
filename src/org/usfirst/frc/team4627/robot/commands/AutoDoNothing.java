@@ -1,5 +1,4 @@
 package org.usfirst.frc.team4627.robot.commands;
-
 import org.usfirst.frc.team4627.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
@@ -19,9 +18,10 @@ public class AutoDoNothing extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
   
-    Robot.driveTrain.setLeftMotors(0);
-    Robot.driveTrain.setRightMotors(0);
-    Timer.delay(100000);
+    Robot.driveTrain.setLeftMotors(0.2);
+    Robot.driveTrain.setRightMotors(-0.2);
+    Timer.delay(4);
+   
     
     }
 
@@ -31,7 +31,7 @@ public class AutoDoNothing extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

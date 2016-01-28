@@ -5,7 +5,18 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team4627.robot.commands.AutonomousGroup;
+
+import org.usfirst.frc.team4627.robot.commands.AutoDoNothing;
+import org.usfirst.frc.team4627.robot.commands.AutonomousGroupCommand;
+import org.usfirst.frc.team4627.robot.commands.LowBar;
+import org.usfirst.frc.team4627.robot.commands.Placement1;
+import org.usfirst.frc.team4627.robot.commands.Placement2;
+import org.usfirst.frc.team4627.robot.commands.Placement3;
+import org.usfirst.frc.team4627.robot.commands.Placement4;
+import org.usfirst.frc.team4627.robot.commands.Placement5;
+import org.usfirst.frc.team4627.robot.commands.RampartsAuto;
+import org.usfirst.frc.team4627.robot.commands.RockWallAuto;
+import org.usfirst.frc.team4627.robot.commands.RoughTerrainAuto;
 import org.usfirst.frc.team4627.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Compressor;
 
@@ -29,7 +40,7 @@ public class Robot extends IterativeRobot {
 	
 	public static int autoPlacementInt;
 	
-	public static Command runAuto = new AutonomousGroup();
+	public static Command runAuto;
 	
 	
 	public static Command autonomousPlacement;
@@ -70,9 +81,10 @@ public class Robot extends IterativeRobot {
 		autoType = new SendableChooser();
 		
 		autoType.addDefault("Do Nothing", 1);
-	    autoType.addObject("Ramparts", defenceValueInt = 2);
-	    autoType.addObject("RockWall", defenceValueInt = 3);
-	    autoType.addObject("Low Bar", defenceValueInt = 4);
+	    autoType.addObject("Ramparts", 2);
+	    autoType.addObject("RockWall", 3);
+	    autoType.addObject("Low Bar", 4);
+	    autoType.addObject("Rough Terrain", 5);
 	    
 	    driveType = new SendableChooser();
 	    
@@ -118,8 +130,44 @@ public class Robot extends IterativeRobot {
     	defencePlacementInt = (int) autoPlace.getSelected();
     	defenceValueInt = (int) autoType.getSelected();
 
+		switch (Robot.defenceValueInt) {
+
+	case 1:
+		runAuto = new AutoDoNothing();
+		break;
+	case 2:
+		runAuto = new RampartsAuto();
+		break;
+	case 3:
+		runAuto = new RockWallAuto();
+		break;
+	case 4:
+		runAuto = new LowBar();
+		break;
+	case 5:
+		runAuto = new RoughTerrainAuto();
+	}
+
+/*	switch (Robot.defencePlacementInt) {
+
+	case 1:
+		runAuto = new Placement1();
+		break;
+	case 2:
+		runAuto = new Placement2();
+		break;
+	case 3:
+		runAuto = new Placement3();
+		break;
+	case 4:
+		Scheduler.getInstance().add(new Placement4();
+		break;
+	case 5:
+		Scheduler.getInstance().add(new Placement5();
+		break;
+	}
         
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		 String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
 			autonomousCommand = new MyAutoCommand();
@@ -131,7 +179,8 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-        if (runAuto != null) runAuto.start();
+       if (runAuto != null) runAuto.start();
+ 
     }
 
     /**
