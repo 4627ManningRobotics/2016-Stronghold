@@ -1,6 +1,7 @@
 package org.usfirst.frc.team4627.robot.commands;
 import org.usfirst.frc.team4627.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
@@ -44,7 +45,7 @@ public class AutonomousGroupCommand extends Command {
 		case 5:
 			autonomousDefenceCommand = new RoughTerrainAuto();
 		}
-    		autonomousDefenceCommand.start();
+    		Scheduler.getInstance().add(autonomousDefenceCommand);
 
 		switch (Robot.defencePlacementInt) {
 
@@ -65,7 +66,7 @@ public class AutonomousGroupCommand extends Command {
 			break;
 		}
 		
-		autonomousPlacementCommand.start();
+		Scheduler.getInstance().add(autonomousPlacementCommand);
     }
 
     // Make this return true when this Command no longer needs to run execute()
